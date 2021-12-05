@@ -1,0 +1,30 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    networks:
+      - local
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+      MYSQL_USER: "uiaoin"
+      MYSQL_PASS: "123456"
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/conf/my.cnf:/etc/my.cnf
+      - ./mysql/init:/docker-entrypoint-initdb.d
+
+  proxy:
+    image: jwilder/nginx-proxy
+    restart: always
+    networks:
+      - local
+    ports:
+      - "80:80"
+    volumes:
+      - ./proxy/logs:/var/log/nginx
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+networks:
+  local:
+    external: true
