@@ -1,0 +1,16 @@
+version: '3'
+services:
+  proxy:
+    image: jwilder/nginx-proxy
+    restart: always
+    networks:
+      - local
+    ports:
+      - "80:80"
+    volumes:
+      - ./logs:/var/log/nginx
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+networks:
+  local:
+    external: true
