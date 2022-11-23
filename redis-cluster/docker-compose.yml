@@ -2,6 +2,7 @@ version: '2'
 services:
   service-redis-cluster:
     image: grokzen/redis-cluster:latest
+    container_name: service-redis-cluster
     restart: always
     networks:
       - service_network
