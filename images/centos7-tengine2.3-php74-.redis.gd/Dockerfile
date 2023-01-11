@@ -9,7 +9,7 @@ COPY files/oniguruma-devel-6.8.2-1.el7.x86_64.rpm /tmp/
 RUN mv -f /tmp/CentOS7-Base-163.repo /etc/yum.repos.d/CentOS-Base.repo && \
     yum makecache && \
     yum -y install epel-release && \
-    yum -y install gcc libxml2-devel sqlite-devel openssl openssl-devel curl-devel make supervisor && \
+    yum -y install gcc libxml2-devel sqlite-devel openssl openssl-devel curl-devel make supervisor libpng-devel libwebp-devel libjpeg-devel libXpm-devel freetype-devel && \
     cd /tmp && yum -y install *.x86_64.rpm
 
 # PHP
@@ -18,6 +18,12 @@ RUN cd /tmp && tar -xf php-7.4.24.tar.gz && cd php-7.4.24 && ./configure --prefi
         --with-pdo-mysql \
         --with-openssl \
         --with-curl \
+        --with-jpeg \
+        --with-xpm \
+        --with-webp \
+        --with-freetype \
+        --with-zlib \
+        --enable-gd \
         --enable-fpm \
         --enable-bcmath \
         --enable-mbstring \
@@ -49,6 +55,6 @@ RUN rm -rf /tmp/* && \
     useradd -s /sbin/nologin -M www
 
 # PHP扩展
-COPY files/redis.so /usr/local/php/lib/php/extensions/no-debug-non-zts-20190902/
+COPY files/php-exts/* /usr/local/php/lib/php/extensions/no-debug-non-zts-20190902/
 
 EXPOSE 443

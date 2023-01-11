@@ -1,8 +1,8 @@
 version: '3'
 services:
-  service-mysql57:
-    image: mysql:5.7
-    container_name: service-mysql57
+  service-mysql56:
+    image: mysql:5.6
+    container_name: service-mysql56
     networks:
       - service_network
     restart: always

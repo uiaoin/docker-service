@@ -1,20 +1,15 @@
 version: '2'
 services:
-  service-redis-cluster:
-    image: grokzen/redis-cluster:latest
-    container_name: service-redis-cluster
+  service-phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: service-phpmyadmin
     restart: always
     networks:
       - service_network
     ports:
-      - "7000:7000"
-      - "7001:7001"
-      - "7002:7002"
-      - "7003:7003"
-      - "7004:7004"
-      - "7005:7005"
-    environment:
-      REDIS_CLUSTER_IP: '0.0.0.0'
+      - "9999:80"
+    volumes:
+      - ./conf/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
 
 networks:
   service_network:

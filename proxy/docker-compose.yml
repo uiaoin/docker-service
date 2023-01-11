@@ -1,7 +1,8 @@
 version: '3'
 services:
-  proxy:
+  service-proxy:
     image: jwilder/nginx-proxy
+    container_name: service-proxy
     restart: always
     networks:
       - local
