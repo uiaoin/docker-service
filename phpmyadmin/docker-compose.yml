@@ -8,6 +8,8 @@ services:
       - service_network
     ports:
       - "9999:80"
+    environment:
+      UPLOAD_LIMIT: 1000000000
     volumes:
       - ./conf/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
 

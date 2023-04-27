@@ -1,0 +1,21 @@
+FROM airbyte/cron:0.40.0-alpha
+
+COPY files/CentOS7-Base-163.repo /tmp/
+COPY files/qshell /tmp/
+COPY cmd/backup.sh /tmp/
+
+RUN mv -f /tmp/CentOS7-Base-163.repo /etc/yum.repos.d/CentOS-Base.repo && \
+    yum makecache && \
+    yum -y install epel-release && \
+    yum -y install crontabs holland-mysqldump.noarch
+
+# 安装qshell
+RUN mv /tmp/qshell /usr/bin/qshell && \
+    chmod +x /usr/bin/qshell && \
+    mkdir -p /var/backup/ && \
+    chmod -R 777 /var/backup/ && \
+    mkdir -p /usr/local/backup/ && \
+    mv /tmp/backup.sh /usr/local/backup/backup.sh && chmod +x /usr/local/backup/backup.sh && \
+    rm -rf /tmp/*
+
+ENTRYPOINT ["/usr/sbin/init"]
