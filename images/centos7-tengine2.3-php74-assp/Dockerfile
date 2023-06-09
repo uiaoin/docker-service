@@ -1,6 +1,6 @@
 FROM centos:7
 
-COPY files/CentOS7-Base-163.repo /tmp/
+COPY files/CentOS7-Base-Aliyun.repo /tmp/
 COPY files/tengine-2.3.3.tar.gz /tmp/
 COPY files/php-7.4.24.tar.gz /tmp/
 COPY files/oniguruma-6.8.2-1.el7.x86_64.rpm /tmp/
@@ -8,7 +8,7 @@ COPY files/libzip-1.8.0.tar.gz /tmp/
 COPY files/cmake-3.16.6.tar.gz /tmp/
 COPY files/oniguruma-devel-6.8.2-1.el7.x86_64.rpm /tmp/
 
-RUN mv -f /tmp/CentOS7-Base-163.repo /etc/yum.repos.d/CentOS-Base.repo && \
+RUN mv -f /tmp/CentOS7-Base-Aliyun.repo /etc/yum.repos.d/CentOS-Base.repo && \
     yum makecache && \
     yum -y install epel-release && \
     yum -y install gcc gcc-c++ libxml2-devel sqlite-devel openssl openssl-devel curl-devel make supervisor libpng-devel libwebp-devel libjpeg-devel libXpm-devel freetype-devel && \
