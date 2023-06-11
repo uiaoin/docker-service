@@ -51,6 +51,7 @@ RUN mkdir -p /usr/local/nginx/conf/vhost && \
 
 
 RUN rm -rf /tmp/* && \
+    strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5 && \
     useradd -s /sbin/nologin -M www
 
 EXPOSE 443
