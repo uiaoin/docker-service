@@ -6,7 +6,7 @@ COPY files/php-7.4.24.tar.gz /tmp/
 
 RUN mv -f /tmp/sources.list /etc/apt/sources.list && \
     apt update && \
-    apt install -y pkg-config gcc make libxml2-dev openssl libssl-dev libsqlite3-dev zlib1g-dev libcurl4-gnutls-dev libpng-dev libwebp-dev libjpeg-dev libxpm-dev libfreetype6-dev libzip-dev libonig-dev libpcre3-dev supervisor
+    apt install -y pkg-config gcc make libxml2-dev openssl libssl-dev libsqlite3-dev zlib1g-dev libcurl4-gnutls-dev libpng-dev libwebp-dev libjpeg-dev libxpm-dev libfreetype6-dev libzip-dev libonig-dev libpcre3-dev supervisor wkhtmltopdf fonts-wqy-microhei
 
 # PHP
 RUN cd /tmp && tar -xf php-7.4.24.tar.gz && cd php-7.4.24 && ./configure --prefix=/usr/local/php  \
